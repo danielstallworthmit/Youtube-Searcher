@@ -1,21 +1,26 @@
 import React, { Component } from 'react';
-import logo from '../logo.svg';
-import '../App.css';
 
-class App extends Component {
+class SearchBar extends Component {
+  constructor(props) {
+    super(props);
+    this.state = { term: '' };
+  }
+
+  onInputChange(term) {
+    this.setState({ term });
+    this.props.onSearchTermChange(term);
+  }
+
   render() {
     return (
-      <div className="App">
-        <div className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <h2>Welcome to React</h2>
-        </div>
-        <p className="App-intro">
-          To get started, edit <code>src/App.js</code> and save to reload.
-        </p>
+      <div className="search-bar">
+        <input type="text"
+          value={this.state.term}
+          onChange={event => this.onInputChange(event.target.value)}
+        />
       </div>
     );
   }
 }
 
-export default App;
+export default SearchBar;
